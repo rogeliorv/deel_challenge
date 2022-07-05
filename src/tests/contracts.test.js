@@ -1,8 +1,11 @@
 const app = require('../app');
 const request = require('supertest');
 
-// NOTE: Current tests are depending on existing db seeds. This is for demostration purposes only
-// If in the future you want to continue testing you should clean + seed tests before tests run
+// NOTE: Current tests are depending on existing db seeds. They are coded based on
+// pre-existing database seed data out of convenience and for demostration purposes only
+// and we should always create idempotent tests that do not depend on pre-existing conditions.
+// If in the future you want to continue testing we can either clean+seed the DB or
+// just create data with code before and cleanup after
 describe('contracts', () => {
     describe(' /contracts/:id', () => {
         it('should get the contract with a given id', async () => {
@@ -36,8 +39,8 @@ describe('contracts', () => {
         });
     });
 
-    describe('/contracts', () => {
-        it('list non-terminated contracts for logged in user', async () => {
+    describe('/jobs/:jobId/pay', () => {
+        it('should pay the given job', async () => {
             const response = await request(app)
                 .get("/contracts")
                 .expect(200)

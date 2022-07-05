@@ -55,9 +55,6 @@ class JobsService {
                     include: [
                         {
                             model: this.contractModel,
-                            where: {
-                                status: { [Op.not]: 'terminated'},
-                            },
                         }
                     ]
                 }, { transaction });
@@ -78,6 +75,14 @@ class JobsService {
                     };
                 }
 
+                if(job.Contract.status === 'terminated') {
+                    return {
+                        statusCode: 400,
+                        success: false,
+                        error: `Job belongs to a terminated contract`,
+                    };
+                }
+
                 const contract = job.Contract;
                 const clientId = contract.ClientId;
                 const contractorId = contract.ContractorId;
@@ -89,6 +94,7 @@ class JobsService {
                 if(!client || !contractor) {
                     return {
                         success: false,
+                        statusCode: 500,
                         error: `Something went wrong while paying for jobId ${jobId} Please contact customer support`,
                     };
                 }
@@ -125,7 +131,6 @@ class JobsService {
             }
             return transactionResult;
         } catch(error) {
-            console.log(error);
             return {
                 statusCode: 400,
                 success: false,
