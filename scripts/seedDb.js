@@ -74,6 +74,14 @@ async function seed() {
       balance: 314,
       type:'contractor'
     }),
+    Profile.create({
+      id: 9,
+      firstName: 'GuyWithoutContracts',
+      lastName: 'GuyWithoutContracts',
+      profession: 'Human',
+      balance: 9000,
+      type:'client'
+    }),
     Contract.create({
       id:1,
       terms: 'bla bla bla',
@@ -225,6 +233,6 @@ async function seed() {
       paymentDate:'2020-08-14T23:11:26.737Z',
       ContractId: 3,
     }),
-    
+
   ]);
 }
