@@ -1,0 +1,12 @@
+Things not required that were improved:
+
+- Added routers instead of having everything under app
+
+
+
+Things to improve in current application:
+
+- Change the profileId to UUID instead of incremental numeric
+- Add something like Sentry to monitor errors
+- Add decorators to middleware to make easier to read
+- Add typescript to the solution and change everything to ES6
