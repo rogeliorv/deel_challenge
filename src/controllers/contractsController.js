@@ -1,7 +1,6 @@
 const { ContractsService } = require("../services/contractsService");
 
 class ContractsController {
-
     async getContract(req, res) {
         const { id: contractId } = req.params;
         const profileId = req.profile.id;

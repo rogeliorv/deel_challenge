@@ -74,10 +74,6 @@ class AdminService {
 
     async getBestClientsInDateRange(start, end, totalClients) {
 
-        console.log(start);
-        console.log(end);
-        console.log(totalClients);
-
         if(!start || !end) {
             return { error: "You should specify startDate and endDate" };
         }

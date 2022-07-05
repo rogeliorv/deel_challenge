@@ -5,12 +5,18 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "4.17.1",
+    "faker": "^6.6.6",
+    "jest-cli": "^28.1.2",
     "moment": "^2.29.3",
-    "sequelize": "^6.3.4",
-    "sqlite3": "^4.0.1"
+    "sequelize": "^6.21.2",
+    "sequelize-cli": "^6.4.1",
+    "sqlite3": "^4.0.1",
+    "supertest": "^6.2.4",
+    "ts-jest": "^28.0.5"
   },
   "scripts": {
     "start": "nodemon ./src/server.js",
+    "test": "node node_modules/.bin/jest",
     "seed": "node ./scripts/seedDb.js"
   },
   "devDependencies": {

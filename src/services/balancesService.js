@@ -85,7 +85,6 @@ class BalancesService {
             };
         }
 
-        console.log(this);
         const balanceLimit = this.getBalanceDepositLimit(jobs);
 
         if(depositAmount > balanceLimit) {
