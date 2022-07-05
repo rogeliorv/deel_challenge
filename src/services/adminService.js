@@ -1,4 +1,4 @@
-const { Op, fn, col } = require("sequelize");
+const { Op, fn, col } = require('sequelize');
 const moment = require('moment');
 
 class AdminService {
@@ -12,26 +12,26 @@ class AdminService {
     async getBestProfessionInDateRange(start, end) {
 
         if (!start || !end) {
-            return { error: "You should specify startDate and endDate" };
+            return { error: 'You should specify startDate and endDate', statusCode: 400 };
         }
 
         const startDate = moment(start, 'YYYY-MM-DD');
         const endDate = moment(end, 'YYYY-MM-DD');
 
         if(!startDate.isValid()) {
-            return { error: "Start date is not valid. Please use YYYY-MM-DD format" };
+            return { error: 'Start date is not valid. Please use YYYY-MM-DD format', statusCode: 400 };
         }
         if(!endDate.isValid()) {
-            return { error: "End date is not valid. Please use YYYY-MM-DD format" };
+            return { error: 'End date is not valid. Please use YYYY-MM-DD format', statusCode: 400 };
         }
 
         const jobs = await this.jobModel.findAll({
             attributes: [
                 'Contract.Contractor.profession',
-                [fn("SUM", col("price")), "totalPaid"],
+                [fn('SUM', col('price')), 'totalPaid'],
             ],
             order: [
-                [fn("SUM", col("price")), 'DESC'],
+                [fn('SUM', col('price')), 'DESC'],
             ],
             where: {
                 paid: true,
@@ -75,7 +75,7 @@ class AdminService {
     async getBestClientsInDateRange(start, end, totalClients) {
 
         if(!start || !end) {
-            return { error: "You should specify startDate and endDate" };
+            return { error: 'You should specify startDate and endDate', statusCode: 400 };
         }
 
         const startDate = moment(start, 'YYYY-MM-DD');
@@ -83,23 +83,23 @@ class AdminService {
         const limit = totalClients || 2;
 
         if(!startDate.isValid()) {
-            return { error: "Start date is not valid. Please use YYYY-MM-DD format" };
+            return { error: 'Start date is not valid. Please use YYYY-MM-DD format', statusCode: 400 };
         }
         if(!endDate.isValid()) {
-            return { error: "End date is not valid. Please use YYYY-MM-DD format" };
+            return { error: 'End date is not valid. Please use YYYY-MM-DD format', statusCode: 400 };
         }
 
         if(!parseInt(limit)) {
-            return { error: "Limit is not valid. Please specify a number" };
+            return { error: 'Limit is not valid. Please specify a number', statusCode: 400 };
         }
 
         const jobs = await this.jobModel.findAll({
             attributes: [
                 'Contract.Client.id',
-                [fn("SUM", col("price")), "totalPaid"],
+                [fn('SUM', col('price')), 'totalPaid'],
             ],
             order: [
-                [fn("SUM", col("price")), 'DESC'],
+                [fn('SUM', col('price')), 'DESC'],
             ],
             limit: totalClients,
             where: {
@@ -146,7 +146,7 @@ class AdminService {
             });
             return paymentsByClient;
         } else {
-            return { error: 'There are no paid jobs during that date range.' };
+            return { error: 'There are no paid jobs during that date range' };
         }
     };
 

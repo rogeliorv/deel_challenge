@@ -1,4 +1,4 @@
-const { JobsService } = require("../services/jobsService");
+const { JobsService } = require('../services/jobsService');
 
 class JobsController {
 

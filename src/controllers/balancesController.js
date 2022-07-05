@@ -1,4 +1,4 @@
-const { BalancesService } = require("../services/balancesService");
+const { BalancesService } = require('../services/balancesService');
 
 class BalancesController {
 

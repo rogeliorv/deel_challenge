@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 
 class JobsService {
 
@@ -15,10 +15,10 @@ class JobsService {
             where: {
                 [Op.or]: [
                     {
-                        "ClientId": profileId,
+                        'ClientId': profileId,
                     },
                     {
-                        "ContractorId": profileId,
+                        'ContractorId': profileId,
                     },
                 ],
                 status: { [Op.not]: 'terminated'},

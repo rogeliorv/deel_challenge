@@ -4,3 +4,5 @@ Things to improve in current application:
 - Add Sentry or some other tool for error monitoring
 - Add decorators to middleware and controllers+routes to make easier to read
 - Add typescript to the solution and change everything to ES6
+- Add a lock to deposit in case two processes try to deposit at the same time
+- Reset DB per test (slower but makes tests non dependent on other changes)
